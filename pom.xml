@@ -5,7 +5,7 @@
 		<repository>
 			<id>spring-maven-milestone</id>
 			<name>Springframework Maven Repository</name>
-			<url>http://repo.springsource.org/milestone</url>
+			<url>https://repo.springsource.org/milestone</url>
 		</repository>
 	</repositories>
 
