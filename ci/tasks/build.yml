@@ -27,5 +27,6 @@ run:
     --artifactId, pcf-demo,
     --packaging, war,
     --archiveType, tar.gz,
-    --archiveIncludeFile, appspec.yml
+    --archiveIncludeFile, appspec.yml,
+    --archiveIncludeFile, ci/scripts
   ]

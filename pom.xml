@@ -29,7 +29,7 @@
 			<id>ci</id>
 			<properties>
 				<versionNumber>${project.version}</versionNumber>
-				<finalName>${project.artifactId}-${versionNumber}</finalName>
+				<finalName>${project.artifactId}</finalName>
 			</properties>
 		</profile>
 	</profiles>

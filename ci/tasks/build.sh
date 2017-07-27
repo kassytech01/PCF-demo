@@ -65,7 +65,7 @@ if [ -z "$archiveType" ]; then
 fi
 
 version=`cat $versionFile`
-artifactName="${artifactId}-${version}.${packaging}"
+artifactName="${artifactId}.${packaging}"
 revisionName="${artifactId}-${version}.${archiveType}"
 files=`echo $archiveIncludeFile | sed s/\|/${inputDir}/g`
 echo $files
