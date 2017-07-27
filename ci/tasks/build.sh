@@ -1,6 +1,6 @@
 #!/bin/sh
 
-inputDir=  outputDir=  versionFile=  artifactId=  packaging=
+inputDir=  outputDir=  versionFile=  artifactId=  packaging=  archiveType=  archiveIncludeFile=
 
 while [ $# -gt 0 ]; do
   case $1 in
@@ -22,6 +22,14 @@ while [ $# -gt 0 ]; do
       ;;
     -p | --packaging )
       packaging=$2
+      shift
+      ;;
+    -at | --archiveType )
+      archiveType=$2
+      shift
+      ;;
+    -f | --archiveIncludeFile )
+      archiveIncludeFile="${archiveIncludeFile} |/$2"
       shift
       ;;
     * )
@@ -52,13 +60,19 @@ fi
 if [ -z "$packaging" ]; then
   error_and_exit "missing packaging!"
 fi
+if [ -z "$archiveType" ]; then
+  error_and_exit "missing archiveType!"
+fi
 
 version=`cat $versionFile`
 artifactName="${artifactId}-${version}.${packaging}"
+revisionName="${artifactId}-${version}.${archiveType}"
+files=`echo $archiveIncludeFile | sed s/\|/${inputDir}/g`
+echo $files
 
 cd $inputDir
 ./mvnw clean package -Pci -DversionNumber=$version
 
-# Copy war file to concourse output folder
+# Create an archive bundle for CodeDeploy & Put to concourse output folder
 cd ..
-cp $inputDir/target/$artifactName $outputDir/$artifactName
+tar zcvf $outputDir/$revisionName $inputDir/target/$artifactName $files
