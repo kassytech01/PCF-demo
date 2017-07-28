@@ -11,7 +11,7 @@ hooks:
     - location: Scripts/tomcat_start.sh
       timeout: 300
       runas: root
-#  ValidateService:
-#    - location: Scripts/monitor_service.sh
-#      timeout: 300
-#      runas: root
+  ValidateService:
+    - location: Scripts/verify_service.sh
+      timeout: 300
+      runas: root
