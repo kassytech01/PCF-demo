@@ -1,17 +1,17 @@
 version: 0.0
 os: linux
 files:
-  - source: pcf-demo.war
+  - source: target/pcf-demo.war
     destination: /var/lib/tomcat8/webapps/
 hooks:
   ApplicationStop:
-    - location: scripts/tomcat_stop.sh
+    - location: ci/scripts/tomcat_stop.sh
       runas: root
   ApplicationStart:
-    - location: Scripts/tomcat_start.sh
+    - location: ci/scripts/tomcat_start.sh
       timeout: 300
       runas: root
   ValidateService:
-    - location: Scripts/verify_service.sh
+    - location: ci/scripts/verify_service.sh
       timeout: 300
       runas: root
