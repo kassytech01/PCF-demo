@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 result=$(curl -LI localhost:8080 -o /dev/null -w '%{http_code}\n' -s)
 
