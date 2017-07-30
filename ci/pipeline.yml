@@ -72,7 +72,7 @@ jobs:
         params:
           <<: *MAVENPARAMS
       - put: candidate-release
-        params: { file: build/pcf-demo-*.war }
+        params: { file: build/pcf-demo-*.tar.gz }
       - put: version
         params: { file: version/number }
 
@@ -110,7 +110,7 @@ jobs:
       - task: prepare-final
         file: pcfdemo/ci/tasks/prepare-final.yml
       - put: final-release
-        params: { file: prepare-final/pcf-demo-*.war }
+        params: { file: prepare-final/pcf-demo-*.tar.gz }
       - put: version
         params: { file: version/number }
 

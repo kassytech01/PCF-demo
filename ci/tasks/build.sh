@@ -29,7 +29,7 @@ while [ $# -gt 0 ]; do
       shift
       ;;
     -f | --archiveIncludeFile )
-      archiveIncludeFile="${archiveIncludeFile} |/$2"
+      archiveIncludeFile="${archiveIncludeFile} $2"
       shift
       ;;
     * )
@@ -67,12 +67,9 @@ fi
 version=`cat $versionFile`
 artifactName="${artifactId}.${packaging}"
 revisionName="${artifactId}-${version}.${archiveType}"
-files=`echo $archiveIncludeFile | sed s/\|/${inputDir}/g`
-echo $files
 
 cd $inputDir
 ./mvnw clean package -Pci -DversionNumber=$version
 
 # Create an archive bundle for CodeDeploy & Put to concourse output folder
-cd ..
-tar zcvf $outputDir/$revisionName $inputDir/target/$artifactName $files
+tar zcvf ../$outputDir/$revisionName target/$artifactName $archiveIncludeFile
