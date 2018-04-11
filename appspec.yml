@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: target/pcf-demo.war
-    destination: /var/lib/tomcat8/webapps/
+    destination: /usr/share/tomcat8/webapps/
 hooks:
   ApplicationStop:
     - location: ci/scripts/tomcat_stop.sh
